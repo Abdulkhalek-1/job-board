@@ -1,4 +1,5 @@
 from django.db import models
+from django.utils.text import slugify
 
 # Create your models here.
 
@@ -18,7 +19,8 @@ class job(models.Model):
     salary = models.IntegerField(default=0)
     experience = models.IntegerField(default=1)
     category = models.ForeignKey("Category", on_delete=models.CASCADE)
-    image = models.ImageField(upload_to=r"jobs/%d-%m-%Y")
+    image = models.ImageField(
+        upload_to=r"jobs/%d-%m-%Y", blank=True, null=True, default="jobs/1.svg")
     is_active = models.BooleanField(default=False)
 
     def __str__(self):
