@@ -1,7 +1,14 @@
 from django import forms
-from .models import Apply
+from .models import Apply, job
 
 class ApplyForm(forms.ModelForm):
     class Meta:
         model = Apply
         fields = ['name', 'email', 'website', 'cv', 'cover_letter']
+
+
+class jobForm(forms.ModelForm):
+    class Meta:
+        model = job
+        fields = "__all__"
+        exclude = ("is_active","owner")

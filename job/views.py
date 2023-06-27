@@ -1,7 +1,7 @@
 from django.shortcuts import render
 from django.core.paginator import Paginator
 from .models import job
-from .forms import ApplyForm
+from .forms import ApplyForm, jobForm
 
 
 def job_list(request):
@@ -24,8 +24,19 @@ def job_detail(request, id):
                 myform.save()
         else:
             form = ApplyForm()
-
         context = {"job": job_detail, "form": form}
         return render(request, "job/job_detail.html", context)
     except:
         return render(request, "job/job_detail.html", {"job.is_active": False})
+
+
+def add_job(request):
+    if request.method=="POST":
+        form = jobForm(request.POST, request.FILES)
+        if form.is_valid():
+            myform = form.save(commit=False)
+            myform.owner = request.user
+            myform = form.save()
+    else:
+        form = jobForm()
+    return render(request, 'job/add_job.html', {"form": form})
