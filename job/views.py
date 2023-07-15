@@ -1,3 +1,4 @@
+from django.db.models import F
 from django.shortcuts import render
 from django.core.paginator import Paginator
 from .models import job
@@ -5,7 +6,7 @@ from .forms import ApplyForm, jobForm
 
 
 def job_list(request):
-    job_list = job.objects.all()
+    job_list = job.objects.order_by(F("published_at").desc())
     paginator = Paginator(job_list, 10)
     page_number = request.GET.get('p')
     page_obj = paginator.get_page(page_number)

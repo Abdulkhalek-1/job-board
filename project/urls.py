@@ -5,6 +5,7 @@ from django.conf.urls.static import static
 
 urlpatterns = [
     path('accounts/', include("django.contrib.auth.urls")),
+    path('accounts/', include("accounts.urls", namespace="accounts")),
     path('', include("home.urls")),
     path('jobs/', include("job.urls", namespace="jobs")),
     # path('accounts/', include("accounts.urls")),

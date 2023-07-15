@@ -1,6 +1,7 @@
 from django import forms
 from .models import Apply, job
 
+
 class ApplyForm(forms.ModelForm):
     class Meta:
         model = Apply
@@ -11,4 +12,4 @@ class jobForm(forms.ModelForm):
     class Meta:
         model = job
         fields = "__all__"
-        exclude = ("is_active","owner")
+        exclude = ("is_active", "owner")
