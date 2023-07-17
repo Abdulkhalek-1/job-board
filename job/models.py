@@ -9,6 +9,8 @@ JOB_TYPE = (
     ("Part Time", "Part Time"),
 )
 
+# test
+
 
 class job(models.Model):
     owner = models.ForeignKey(User, related_name="job_owner", on_delete=models.CASCADE)
@@ -22,7 +24,8 @@ class job(models.Model):
     experience = models.IntegerField(default=1)
     category = models.ForeignKey("Category", on_delete=models.CASCADE)
     image = models.ImageField(
-        upload_to=r"jobs/%d-%m-%Y", blank=True, null=True, default="jobs/1.svg")
+        upload_to=r"jobs/%d-%m-%Y", blank=True, null=True, default="jobs/1.svg"
+    )
     is_active = models.BooleanField(default=False)
 
     def __str__(self):
@@ -41,7 +44,7 @@ class Apply(models.Model):
     name = models.CharField(max_length=50)
     email = models.CharField(max_length=100)
     website = models.URLField()
-    cv = models.FileField(upload_to='apply/')
+    cv = models.FileField(upload_to="apply/")
     cover_letter = models.TextField()
     created_at = models.TimeField(auto_now=True)
 
